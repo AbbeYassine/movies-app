@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 57.0.2987 (Windows 10 0.0.0)" package="models" timestamp="2017-05-04T21:56:46" id="0" hostname="DESKTOP-SD918R7" tests="1" errors="0" failures="0" time="1.412">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36"/>
+  </properties>
+  <testcase name="AppComponent should create the app" time="1.412" classname="Chrome_57_0_2987_(Windows_10_0_0_0).models.AppComponent"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
