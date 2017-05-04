@@ -8,6 +8,7 @@
 # dependencies
 /node_modules
 
+/Chrome_57.0.2987_(Windows_10_0.0.0)
 # IDEs and editors
 /.idea
 .project
