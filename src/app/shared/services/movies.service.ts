@@ -1,11 +1,12 @@
 /**
  * Created by Vyndee on 22/04/2017.
  */
-import {Http} from "@angular/http";
+import {Http,RequestOptions , Response, Headers} from "@angular/http";
 import {GenericService} from "./generic.service";
 import {Injectable} from "@angular/core";
 import {Config} from "../config";
 import {Movie} from "../models/movie/movie";
+import {Observable} from 'rxjs/Observable';
 /**
  * Created by Vyndee on 27/03/2017.
  */
@@ -71,5 +72,13 @@ export class MoviesService extends GenericService {
     return movies;
   }
 
+  /*createMovie(movie: Movie): Observable<Movie> {
+      let body = JSON.stringify(movie);
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
 
+      return this._http.post(this._movieUrl, body, options)
+              .map(this.extractData)
+              .catch(this.handleError);
+  }*/
 }
