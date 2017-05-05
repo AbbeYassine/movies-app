@@ -82,6 +82,20 @@ export class MoviesService extends GenericService {
 
 
   }
+  addActortoMovie(movie:Movie,actor:string){
+
+    let acteur = this.http.get(Config.JUrl + "/actors/"+movie.id, {
+      headers: this.headers
+    })
+      .map(res => res.json())
+      .catch(this.handleErrors)
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = JSON.stringify(movie);
+      return this.http.post('localhost:3000/movies', body, headers).map((res: Response) => console.log(res.json()));
+
+
+  }
 
   private extractData(res: Response) {
     let body = res.json();
