@@ -46,7 +46,28 @@ export class MoviesService extends GenericService {
         nom: "Movie name",
         movies: null,
       }]
-    }];
+    },{
+      id: 1,
+      year: 2018,
+      title: "Title 6",
+      actors: [{
+        id: 1,
+        birth_year: 2012,
+        nom: "Movie name",
+        movies: null,
+      }]
+    },
+      {
+        id: 1,
+        year: 2020,
+        title: "Title 19",
+        actors: [{
+          id: 1,
+          birth_year: 2012,
+          nom: "Movie name",
+          movies: null,
+        }]
+      }];
     return movies;
   }
 
