@@ -37,6 +37,3 @@ export const components = [
 })
 export class AppModule {
 }
-
-
-
