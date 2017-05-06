@@ -9,6 +9,5 @@ var Config = (function () {
     return Config;
 }());
 Config.baseUrl = "http://52.48.41.252:8003";
-//public static baseUrl = "http://localhost:3000";
-Config.JUrl = "localhost:3000";
+Config.JUrl = "http://52.48.41.252:8003";
 exports.Config = Config;

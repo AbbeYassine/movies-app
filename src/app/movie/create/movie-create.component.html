@@ -3,45 +3,50 @@
     <div class="col-md-6 col-md-offset-1" [ngBusy]="busy">
       <h2>Add a movie</h2>
       <h2>Add a movie</h2>
-  <h1 class="text-center well"><span class="glyphicon glyphicon-film"></span> MOVIES</h1>
-      <form >
+      <h1 class="text-center well"><span class="glyphicon glyphicon-film"></span> MOVIES</h1>
+      <form>
         <div class="form-group">
           <label for="id">Id</label>
           <input [(ngModel)]="newMovie.id" type="text" class="form-control" name="id" placeholder="id">
         </div>
         <div class="form-group">
           <label for="title">Title</label>
-          <input [(ngModel)]="newMovie.title" type="text" class="form-control" name="title"  placeholder="title">
+          <input [(ngModel)]="newMovie.title" type="text" class="form-control" name="title" placeholder="title">
         </div>
         <div class="form-group">
           <label for="year">Year of release</label>
           <input [(ngModel)]="newMovie.year" type="text" class="form-control" name="year" placeholder="year">
         </div>
 
-        <button *ngIf="clicked" (click)="createMovie()" type="button" class="btn btn-info btn-block">Add a movie</button>
+        <button *ngIf="clicked" (click)="createMovie()" type="button" class="btn btn-info btn-block">Add a movie
+        </button>
 
       </form>
 
     </div>
     <div class="col-md-4">
-      <div *ngIf="edited" >
+      <div *ngIf="edited">
         <h2>The cast </h2>
         <h2>The cast </h2>
         <div class="form-group">
-
-          <select name="title" [(ngModel)]="actor" ng-options="item as item.title for item in items track by item.id" >
-            <option>
-              {{item.title}}
-            </option>
+          <select [(ngModel)]="index" name="Select name" class="ui fluid search selection dropdown">
+            <option *ngFor="let actor of actors ;let i=index" [attr.value]="i">{{actor.name}}</option>
           </select>
-          <button *ngIf="clicked" (click)="addActorToMovies()" type="button" class="btn btn-default center-block">Add actor</button>
-
+          <button *ngIf="clicked" (click)="addActorToMovies()" type="button" class="btn btn-default center-block">Add
+            actor
+          </button>
         </div>
-
       </div>
+      <div class="form-group">
 
-
+        <ul>
+          <li *ngFor=" let value of values">
+            <pre>{{ value}} </pre>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+
 </div>
 <simple-notifications [options]="options"></simple-notifications>

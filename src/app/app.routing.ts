@@ -12,13 +12,24 @@ import {ActorCreateComponent} from "./actor/create/actor-create.component";
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'details',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
     path: 'details',
     component: DetailsComponent
-
+  },
+  {
+    path: "home",
+    component: HomeComponent
+  },
+  {
+    path: "add-movie",
+    component: MovieCreateComponent
+  },
+  {
+    path: "add-actor",
+    component: ActorCreateComponent
   }
 
 ];
@@ -31,7 +42,7 @@ export class RoutingModule {
 }
 
 export const navigatableComponent = [
-  DetailsComponent
+  DetailsComponent,
   HomeComponent,
   MovieCreateComponent,
   ActorCreateComponent

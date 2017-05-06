@@ -20,12 +20,11 @@ export class MovieCreateComponent implements OnInit {
   public clicked = true;
   public values;
   public nb_actors: number;
-  public actor="";
+  public index;
   public items: Array<Movie>;
+  public actors: Actor[] = [];
 
   busy: Subscription;
-
-
 
 
   public options = {
@@ -41,33 +40,66 @@ export class MovieCreateComponent implements OnInit {
 
   ngOnInit() {
     this.newMovie = new Movie;
-    this.nb_actors=0;
+    this.nb_actors = 0;
     this.items = this._moviesService.getAllActorsMock();
-  }
-/*  set actor(actor) {
-    this._actor = actor;
-    this.addActorToMovies();
-}*/
 
-  addActorToMovies(){
-  alert("actor added successfully");
-      this.values.push(this.actor);
-    //    this._moviesService.addActortoMovie(this.actor,this.newMovie);
+    this._moviesService.getAllActors()
+      .subscribe(
+        (data) => {
+          this.actors = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+  }
+
+  /*  set actor(actor) {
+   this._actor = actor;
+   this.addActorToMovies();
+   }*/
+
+  addActorToMovies() {
+    // alert("actor added successfully");
+    console.log(JSON.stringify(this.index));
+    this.values.push(this.actors[parseInt(this.index)].name);
+
+    this.busy = this._moviesService.addActortoMovie(this.newMovie, this.actors[parseInt(this.index)])
+      .subscribe(
+        (data) => {
+
+          this._service.success(
+            'Actor',
+            'Success',
+            {
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: false,
+              maxLength: 10
+            }
+          )
+
+        },
+        (error) => {
+
+        }
+      )
   }
 
   createMovie(event) {
     this.edited = true;
     // this.clicked = false;
+
     this.values = Array(this.nb_actors).fill(1);
     let _this = this;
 
     console.log(this.newMovie);
-  /*  this.busy = this._moviesService.createMovie(this.newMovie)
+    this.busy = this._moviesService.createMovie(this.newMovie)
       .subscribe(data => {
           console.log(data);
           _this._service.success(
             'Movie',
-            'Ajout movie success',
+            'Success',
             {
               showProgressBar: true,
               pauseOnHover: false,
@@ -80,14 +112,15 @@ export class MovieCreateComponent implements OnInit {
           console.log(error);
           _this._service.error(
             'Movie',
-            'Ajout movie error',
+            'Error',
             {
               showProgressBar: true,
               pauseOnHover: false,
               clickToClose: false,
               maxLength: 10
             });
-        });*/
+        });
+
   }
 
   cancelCreate(event) {

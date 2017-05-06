@@ -36,7 +36,7 @@ export class MoviesService extends GenericService {
       actors: [{
         id: 1,
         birth_year: 2012,
-        nom: "Movie name",
+        name: "Movie name",
         movies: null,
       }]
     }, {
@@ -46,7 +46,7 @@ export class MoviesService extends GenericService {
       actors: [{
         id: 1,
         birth_year: 2012,
-        nom: "Movie name",
+        name: "Movie name",
         movies: null,
       }]
     }, {
@@ -56,7 +56,7 @@ export class MoviesService extends GenericService {
       actors: [{
         id: 1,
         birth_year: 2012,
-        nom: "Movie name",
+        name: "Movie name",
         movies: null,
       }]
     },
@@ -67,11 +67,19 @@ export class MoviesService extends GenericService {
         actors: [{
           id: 1,
           birth_year: 2012,
-          nom: "Movie name",
+          name: "Movie name",
           movies: null,
         }]
       }];
     return movies;
+  }
+
+  getAllActors() {
+    return this.http.get(Config.baseUrl + "/actors", {
+      headers: this.headers
+    })
+      .map(res => res.json())
+      .catch(this.handleErrors)
   }
 
   getAllActorsMock() {
@@ -82,7 +90,7 @@ export class MoviesService extends GenericService {
       actors: [{
         id: 1,
         birth_year: 2012,
-        nom: "Movie name",
+        name: "Movie name",
         movies: null,
       }]
     }, {
@@ -92,7 +100,7 @@ export class MoviesService extends GenericService {
       actors: [{
         id: 1,
         birth_year: 2012,
-        nom: "Movie name",
+        name: "Movie name",
         movies: null,
       }]
     }, {
@@ -102,7 +110,7 @@ export class MoviesService extends GenericService {
       actors: [{
         id: 1,
         birth_year: 2012,
-        nom: "Movie name",
+        name: "Movie name",
         movies: null,
       }]
     },
@@ -113,7 +121,7 @@ export class MoviesService extends GenericService {
         actors: [{
           id: 1,
           birth_year: 2012,
-          nom: "Movie name",
+          name: "Movie name",
           movies: null,
         }]
       }];
@@ -121,7 +129,6 @@ export class MoviesService extends GenericService {
   }
 
   createMovie(movie: Movie) {
-
 
 
     let body = JSON.stringify(movie);
@@ -135,8 +142,8 @@ export class MoviesService extends GenericService {
 
 
   }
-  createActor(actor: Actor) {
 
+  createActor(actor: Actor) {
 
 
     let body = JSON.stringify(actor);
@@ -156,17 +163,14 @@ export class MoviesService extends GenericService {
     return body.data || {};
   }
 
-  addActortoMovie(movie:Movie,actor:string){
+  addActortoMovie(movie: Movie, actor: Actor) {
 
-    let acteur = this.http.get(Config.JUrl + "/actors/"+movie.id, {
+
+    return this.http.post(Config.JUrl + "/movies/" + movie.id + "/actors", JSON.stringify(actor), {
       headers: this.headers
     })
       .map(res => res.json())
       .catch(this.handleErrors)
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    let body = JSON.stringify(movie);
-    return this.http.post('localhost:3000/movies', body, headers).map((res: Response) => console.log(res.json()));
 
 
   }

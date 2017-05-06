@@ -1,31 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Movie } from '../shared/models/movie/movie';
-import { Actor } from '../shared/models/actor/actor';
-import { MoviesService } from '../shared/services/movies.service';
+import {Movie} from '../shared/models/movie/movie';
+import {Actor} from '../shared/models/actor/actor';
+import {MoviesService} from '../shared/services/movies.service';
 
 const actors1: Actor[] = [
   {
     id: 100,
-    nom: 'Tom Hanks',
+    name: 'Tom Hanks',
     birth_year: 1956,
     movies: []
   },
   {
     id: 101,
-    nom: 'Robert Gama',
+    name: 'Robert Gama',
     birth_year: 1956,
     movies: []
   },
 ]
 
 const MOVIES: Movie[] = [
-  { id: 11, title: 'Mr. Nice', year:1992 , actors:actors1 },
-  { id: 12, title: 'Narco' ,  year:1992 ,actors:[]},
-  { id: 13, title: 'Bombasto' ,  year:1992 ,actors:[]},
-  { id: 14, title: 'Celeritas',  year:1992 ,actors:[]},
-  { id: 15, title: 'Magneta' ,  year:1992 ,actors:[]},
-  { id: 16, title: 'RubberMan',  year:1992 ,actors:[]},
+  {id: 11, title: 'Mr. Nice', year: 1992, actors: actors1},
+  {id: 12, title: 'Narco', year: 1992, actors: []},
+  {id: 13, title: 'Bombasto', year: 1992, actors: []},
+  {id: 14, title: 'Celeritas', year: 1992, actors: []},
+  {id: 15, title: 'Magneta', year: 1992, actors: []},
+  {id: 16, title: 'RubberMan', year: 1992, actors: []},
 ];
 
 @Component({
@@ -35,13 +35,25 @@ const MOVIES: Movie[] = [
 })
 export class DetailsComponent implements OnInit {
 
-  movies = MOVIES;
+  movies: Movie[] = [];
 
-  //movies= MoviesService.getAllMovies();
 
-  constructor() { }
+  constructor(private movieService: MoviesService) {
+  }
 
   ngOnInit() {
+
+    this.movieService.getAllMovies()
+      .subscribe(
+        data => {
+          console.log(data);
+          this.movies = data;
+        },
+        error => {
+          console.log("error");
+        }
+      )
+
   }
 
 }
