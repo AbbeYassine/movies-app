@@ -7,6 +7,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {MovieCreateComponent} from "./movie/create/movie-create.component";
+import {ActorCreateComponent} from "./actor/create/actor-create.component";
 
 export const routes: Routes = [
   {
@@ -30,5 +31,6 @@ export class RoutingModule {
 
 export const navigatableComponent = [
   HomeComponent,
-  MovieCreateComponent
+  MovieCreateComponent,
+  ActorCreateComponent
 ];

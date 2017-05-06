@@ -5,7 +5,9 @@ import {Router} from '@angular/router';
 import {Subscription} from "rxjs";
 import {NotificationsService} from "angular2-notifications/dist";
 import {Movie} from "../../shared/models/movie/movie";
+import {Actor} from "../../shared/models/actor/actor";
 import {MoviesService} from "../../shared/services/movies.service";
+
 
 @Component({
   templateUrl: 'movie-create.component.html'
@@ -13,20 +15,13 @@ import {MoviesService} from "../../shared/services/movies.service";
 
 export class MovieCreateComponent implements OnInit {
   newMovie: Movie;
+  movies: Movie[];
   public edited = false;
   public clicked = true;
   public values;
   public nb_actors: number;
-  public actor: string;
-  public items: Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
-    'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
-    'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin', 'Düsseldorf',
-    'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg', 'Hamburg', 'Hannover',
-    'Helsinki', 'Leeds', 'Leipzig', 'Lisbon', 'Łódź', 'London', 'Kraków', 'Madrid',
-    'Málaga', 'Manchester', 'Marseille', 'Milan', 'Munich', 'Naples', 'Palermo',
-    'Paris', 'Poznań', 'Prague', 'Riga', 'Rome', 'Rotterdam', 'Seville', 'Sheffield',
-    'Sofia', 'Stockholm', 'Stuttgart', 'The Hague', 'Turin', 'Valencia', 'Vienna',
-    'Vilnius', 'Warsaw', 'Wrocław', 'Zagreb', 'Zaragoza'];
+  public actor="";
+  public items: Array<Movie>;
 
   busy: Subscription;
 
@@ -46,11 +41,17 @@ export class MovieCreateComponent implements OnInit {
 
   ngOnInit() {
     this.newMovie = new Movie;
+    this.nb_actors=0;
+    this.items = this._moviesService.getAllActorsMock();
   }
+/*  set actor(actor) {
+    this._actor = actor;
+    this.addActorToMovies();
+}*/
 
-  addActorToMovies(v){
-
-    //  this.values.push(v);
+  addActorToMovies(){
+  alert("actor added successfully");
+      this.values.push(this.actor);
     //    this._moviesService.addActortoMovie(this.actor,this.newMovie);
   }
 
@@ -61,7 +62,7 @@ export class MovieCreateComponent implements OnInit {
     let _this = this;
 
     console.log(this.newMovie);
-    this.busy = this._moviesService.createMovie(this.newMovie)
+  /*  this.busy = this._moviesService.createMovie(this.newMovie)
       .subscribe(data => {
           console.log(data);
           _this._service.success(
@@ -86,7 +87,7 @@ export class MovieCreateComponent implements OnInit {
               clickToClose: false,
               maxLength: 10
             });
-        });
+        });*/
   }
 
   cancelCreate(event) {

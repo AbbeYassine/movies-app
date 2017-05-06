@@ -7,6 +7,8 @@ import {Observable} from 'rxjs/Observable';
 import {Config} from "../config";
 import {GenericService} from "./generic.service";
 import {Movie} from "../models/movie/movie";
+import {Actor} from "../models/actor/actor";
+
 /**
  * Created by Vyndee on 27/03/2017.
  */
@@ -30,7 +32,7 @@ export class MoviesService extends GenericService {
     let movies: Movie[] = [{
       id: 1,
       year: 2012,
-      title: "Title 2",
+      title: "Tom Hanks",
       actors: [{
         id: 1,
         birth_year: 2012,
@@ -40,7 +42,7 @@ export class MoviesService extends GenericService {
     }, {
       id: 1,
       year: 2013,
-      title: "Title 1",
+      title: "Julia Roberts",
       actors: [{
         id: 1,
         birth_year: 2012,
@@ -50,7 +52,7 @@ export class MoviesService extends GenericService {
     }, {
       id: 1,
       year: 2018,
-      title: "Title 6",
+      title: "Nicole Kidman",
       actors: [{
         id: 1,
         birth_year: 2012,
@@ -61,7 +63,53 @@ export class MoviesService extends GenericService {
       {
         id: 1,
         year: 2020,
-        title: "Title 19",
+        title: "Tom Cruise",
+        actors: [{
+          id: 1,
+          birth_year: 2012,
+          nom: "Movie name",
+          movies: null,
+        }]
+      }];
+    return movies;
+  }
+
+  getAllActorsMock() {
+    let movies: Movie[] = [{
+      id: 1,
+      year: 2012,
+      title: "Titanic",
+      actors: [{
+        id: 1,
+        birth_year: 2012,
+        nom: "Movie name",
+        movies: null,
+      }]
+    }, {
+      id: 1,
+      year: 2013,
+      title: "Lost",
+      actors: [{
+        id: 1,
+        birth_year: 2012,
+        nom: "Movie name",
+        movies: null,
+      }]
+    }, {
+      id: 1,
+      year: 2018,
+      title: "Colonia",
+      actors: [{
+        id: 1,
+        birth_year: 2012,
+        nom: "Movie name",
+        movies: null,
+      }]
+    },
+      {
+        id: 1,
+        year: 2020,
+        title: "The social network",
         actors: [{
           id: 1,
           birth_year: 2012,
@@ -79,6 +127,21 @@ export class MoviesService extends GenericService {
     let body = JSON.stringify(movie);
 
     return this.http.post(Config.baseUrl + "/movies", body,
+      {
+        headers: this.headers
+      })
+      .map(res => res.json())
+      .catch(this.handleErrors)
+
+
+  }
+  createActor(actor: Actor) {
+
+
+
+    let body = JSON.stringify(actor);
+
+    return this.http.post(Config.baseUrl + "/actors", body,
       {
         headers: this.headers
       })

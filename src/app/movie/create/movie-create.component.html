@@ -3,7 +3,7 @@
     <div class="col-md-6 col-md-offset-1" [ngBusy]="busy">
       <h2>Add a movie</h2>
       <h2>Add a movie</h2>
-
+  <h1 class="text-center well"><span class="glyphicon glyphicon-film"></span> MOVIES</h1>
       <form >
         <div class="form-group">
           <label for="id">Id</label>
@@ -24,28 +24,23 @@
 
     </div>
     <div class="col-md-4">
-
       <div *ngIf="edited" >
         <h2>The cast </h2>
         <h2>The cast </h2>
         <div class="form-group">
-          <select  ngModel="actor" ng-change="addActorToMovies(actor)" >
-            <option *ngFor="let item of items" [value]="v">
-              {{item}}
+
+          <select name="title" [(ngModel)]="actor" ng-options="item as item.title for item in items track by item.id" >
+            <option>
+              {{item.title}}
             </option>
           </select>
+          <button *ngIf="clicked" (click)="addActorToMovies()" type="button" class="btn btn-default center-block">Add actor</button>
+
         </div>
 
-        <button *ngIf="clicked" (click)="addActorToMovies(actor)" type="button" class="btn btn-default center-block">Add actor</button>
       </div>
-      <div class="form-group">
 
-        <ul>
-          <li *ngFor=" let value of values">
-            <pre>{{ value}} </pre>
-          </li>
-        </ul>
-      </div>
+
     </div>
   </div>
 </div>

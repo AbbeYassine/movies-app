@@ -4,7 +4,7 @@ import {Movie} from "../movie/movie";
  */
 export class Actor {
   public id: number;
-  public nom: string;
+  public name: string;
   public birth_year: number;
   public movies: Movie[];
 }

@@ -1,20 +1,44 @@
-<h2>Add a movie</h2>
-<h2>Add a movie</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1" [ngBusy]="busy">
+      <h2>Add an actor</h2>
+      <h2>Add an actor</h2>
 
+      <form >
+        <div class="form-group">
+          <label for="id">Id</label>
+          <input [(ngModel)]="newActor.id" type="text" class="form-control" name="id" placeholder="id">
+        </div>
+        <div class="form-group">
+          <label for="title">Name</label>
+          <input [(ngModel)]="newActor.name" type="text" class="form-control" name="name"  placeholder="name">
+        </div>
+        <div class="form-group">
+          <label for="birth_year">birth_year</label>
+          <input [(ngModel)]="newActor.birth_year" type="text" class="form-control" name="birth_year" placeholder="birth_year">
+        </div>
 
-<form class="col-sm-5">
-  <div class="form-group">
-      <label for="id">Id</label>
-      <input [(ngModel)]="newMovie.id" type="number" class="form-control" name="id" placeholder="id">
+        <button *ngIf="clicked" (click)="createActor()" type="button" class="btn btn-info btn-block">Add an actor</button>
+
+      </form>
+
+    </div>
+    <div class="col-md-4">
+      <div *ngIf="edited" >
+        <h2>Movie roles </h2>
+        <h2>Movie roles</h2>
+        <div class="form-group">
+          <select  [(ngModel)]="movie" name="movie" (ngModelChange)="addMovieToActors()" >
+            <option *ngFor="let item of items" [value]="v">
+              {{item.title}}
+            </option>
+          </select>
+        </div>
+
+        <button *ngIf="clicked" (click)="addMovieToActors()" type="button" class="btn btn-default center-block">Add actor</button>
+      </div>
+
+    </div>
   </div>
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input [(ngModel)]="newMovie.title" type="text" class="form-control" name="title"  placeholder="title">
-    </div>
-    <div class="form-group">
-        <label for="year">Year of release</label>
-        <input [(ngModel)]="newMovie.year" type="number" class="form-control" name="year" placeholder="year">
-    </div>
-    <button (click)="createMovie()" type="button" class="btn btn-default">Save</button>
-    <button (click)="cancelCreate()" type="button" class="btn btn-danger">Cancel</button>
-</form>
+</div>
+<simple-notifications [options]="options"></simple-notifications>
