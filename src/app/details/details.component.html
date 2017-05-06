@@ -1,0 +1,30 @@
+<div class="container">
+  <!-- Jumbotron Header -->
+  <header class="jumbotron hero-spacer">
+    <h1>Details</h1>
+  </header>
+
+  <div>
+
+
+    <h2 *ngFor="let movie of movies; let i = index; trackBy: trackByFn">
+
+      <div class="container">
+        {{movie.title}}
+        <span class="badge">{{movie.year}}</span> <br>
+
+        <h6 *ngFor="let actor of movie.actors; let j = index; trackBy: trackByFn">
+          {{actor.nom}}
+        </h6>
+
+      </div>
+
+      <hr>
+
+    </h2>
+
+  </div>
+
+</div>
+
+

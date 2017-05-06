@@ -8,6 +8,8 @@ import {RoutingModule, navigatableComponent} from "./app.routing";
 import {ItemMovieComponent} from "./shared/item-movie/item-movie.component";
 import {FooterComponent} from "./shared/footer/footer.component";
 import {HeaderComponent} from "./shared/header/header.component";
+import { DetailsComponent } from './details/details.component';
+
 import {BusyModule} from "angular2-busy";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SimpleNotificationsModule} from "angular2-notifications";
@@ -24,7 +26,8 @@ export const components = [
   declarations: [
     AppComponent,
     ...navigatableComponent,
-    ...components
+    ...components,
+    DetailsComponent
   ],
   imports: [
     RoutingModule,
