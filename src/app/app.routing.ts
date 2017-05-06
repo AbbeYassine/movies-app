@@ -2,19 +2,20 @@
  * Created by Vyndee on 22/04/2017.
  */
 
-
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
+import {DetailsComponent} from "./details/details.component";
+
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'details',
     pathMatch: 'full',
   },
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'details',
+    component: DetailsComponent
   }
 
 ];
@@ -27,5 +28,5 @@ export class RoutingModule {
 }
 
 export const navigatableComponent = [
-  HomeComponent
+  DetailsComponent
 ];

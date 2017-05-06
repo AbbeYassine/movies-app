@@ -9,6 +9,8 @@ import {ItemMovieComponent} from "./shared/item-movie/item-movie.component";
 import {MoviesService} from "./shared/services/movies.service";
 import {FooterComponent} from "./shared/footer/footer.component";
 import {HeaderComponent} from "./shared/header/header.component";
+import { DetailsComponent } from './details/details.component';
+
 
 export const components = [
   ItemMovieComponent,
@@ -21,7 +23,8 @@ export const components = [
   declarations: [
     AppComponent,
     ...navigatableComponent,
-    ...components
+    ...components,
+    DetailsComponent
   ],
   imports: [
     RoutingModule,
